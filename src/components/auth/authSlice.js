@@ -8,7 +8,7 @@ export const slice = createSlice({
   },
   reducers: {
     success: (state, action) => {
-      state.user = action;
+      state.user = action.payload;
       state.loginStatus = true;
     },
     error: state => {
