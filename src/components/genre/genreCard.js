@@ -12,7 +12,14 @@ const GenreCard = ({ name, image, id }) => {
     <Card>
       <img src={image}></img>
       <p>{name}</p>
-      <Link to={`/genre/${id}`}>Show Artists</Link>
+      <Link
+        to={{
+          pathname: `/genre/${id}`,
+          state: { modal: true }
+        }}
+      >
+        Show Artists
+      </Link>
     </Card>
   );
 };

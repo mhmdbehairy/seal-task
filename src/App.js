@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 
 import { Layout } from 'components';
 import { LoginPage } from 'pages';
 import { GenresContainer, Artists } from 'pages';
+import { ArtistList } from 'components';
 import { initDZ } from 'utilities';
 
 import 'antd/dist/antd.css';
@@ -12,19 +13,35 @@ import 'antd/dist/antd.css';
 initDZ();
 
 const App = () => {
+  const history = useHistory();
+  const location = history.location;
+
+  const [prevLocation, setPrevLocation] = useState(location);
+
+  useEffect(() => {
+    if (!(location.state && location.state.modal)) {
+      setPrevLocation(location);
+    }
+  }, [location]);
+
+  const isModal =
+    location.state && location.state.modal && prevLocation !== location;
+
   return (
     <Layout>
-      <Switch>
+      <Switch location={isModal ? prevLocation : location}>
         <Route exact path="/">
           <LoginPage />
         </Route>
         <Route exact path="/genre">
           <GenresContainer />
         </Route>
+      </Switch>
+      {isModal && (
         <Route exact path="/genre/:id">
           <Artists></Artists>
         </Route>
-      </Switch>
+      )}
     </Layout>
   );
 };

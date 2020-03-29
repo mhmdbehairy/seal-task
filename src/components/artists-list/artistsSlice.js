@@ -1,22 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const slice = createSlice({
-  name: 'artist',
+  name: 'artists',
   initialState: {
-    artistList: []
+    artistsList: []
   },
   reducers: {
     success: (state, action) => {
-      state.artistList = action.payload;
-    },
-    error: state => {
-      state.artistList = [];
+      state.artistsList = action.payload;
     }
   }
 });
 
 export const { success, error } = slice.actions;
 
-export const selectArtists = state => state.artist.artistList;
+export const selectArtists = state => state.artists.artistsList;
 
 export default slice.reducer;
