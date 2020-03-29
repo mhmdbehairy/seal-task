@@ -8,11 +8,14 @@ export const slice = createSlice({
   reducers: {
     success: (state, action) => {
       state.artistsList = action.payload;
+    },
+    clear: state => {
+      state.artistsList = [];
     }
   }
 });
 
-export const { success, error } = slice.actions;
+export const { success, clear } = slice.actions;
 
 export const selectArtists = state => state.artists.artistsList;
 
