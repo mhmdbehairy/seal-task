@@ -6,6 +6,7 @@ import { selectUser, selectLoginStatus } from 'components/auth/authSlice';
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const user = useSelector(selectUser);
   const loginStatus = useSelector(selectLoginStatus);
+
   return (
     <Route
       {...rest}
