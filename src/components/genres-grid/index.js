@@ -1,25 +1,28 @@
 import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import styled from '@emotion/styled/macro';
+
 import GenreCard from './genreCard';
 
-import { success, error, selectGenres } from 'components/genre/genreSlice';
+import { success, selectGenres } from 'components/genres-grid/genreSlice';
 
 const { DZ } = window;
 
 const GenreContainer = styled.div`
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 5% 0;
+  height: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-gap: 25px;
   grid-auto-flow: row;
 `;
 
 const GenreGrid = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
-  const genreList = useSelector(selectGenres);
+  const genresList = useSelector(selectGenres);
 
   useEffect(() => {
     DZ.api('/genre', response => {
@@ -29,13 +32,13 @@ const GenreGrid = () => {
 
   return (
     <GenreContainer>
-      {genreList &&
-        genreList.map(genre => {
+      {genresList &&
+        genresList.map(genre => {
           return (
             <GenreCard
               key={genre.id}
               name={genre.name}
-              image={genre.picture}
+              image={genre.picture_medium}
               id={genre.id}
             ></GenreCard>
           );

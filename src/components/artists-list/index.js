@@ -38,7 +38,10 @@ const ArtistList = () => {
       title={(() => {
         return <h1 style={{ marginBottom: '0' }}>Artists</h1>;
       })()}
-      bodyStyle={{ height: '400px', overflowY: 'scroll' }}
+      bodyStyle={{
+        height: '400px',
+        overflowY: artistsList.length === 0 ? 'none' : 'scroll'
+      }}
       onCancel={handleHide}
       footer={[
         <Button
@@ -82,10 +85,3 @@ const ArtistList = () => {
 };
 
 export default ArtistList;
-
-/* <ul>
-{artistsList &&
-  artistsList.map(artist => {
-    return <li key={artist.id}>{artist.name}</li>;
-  })}
-</ul> */
