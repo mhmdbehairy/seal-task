@@ -3,7 +3,7 @@ import React from 'react';
 import Header from 'components/header';
 import { GenreGrid } from 'components';
 
-const LoginContainer = () => {
+const GenresContainer = () => {
   return (
     <>
       <Header></Header>
@@ -12,4 +12,4 @@ const LoginContainer = () => {
   );
 };
 
-export default LoginContainer;
+export default GenresContainer;

@@ -5,7 +5,7 @@ import { Route, Redirect, Switch, useHistory } from 'react-router-dom';
 import { Layout } from 'components';
 import { LoginPage } from 'pages';
 import { GenresContainer } from 'pages';
-import { ArtistList } from 'components';
+import { ArtistList, PrivateRoute } from 'components';
 import { initDZ } from 'utilities';
 
 import 'antd/dist/antd.css';
@@ -30,18 +30,12 @@ const App = () => {
   return (
     <Layout>
       <Switch location={isModal ? prevLocation : location}>
-        <Route exact path="/">
-          <LoginPage />
-        </Route>
-        <Route exact path="/genre">
-          <GenresContainer />
-        </Route>
+        <Route exact path="/" component={LoginPage} />
+        <PrivateRoute exact path="/genre" component={GenresContainer} />
         <Redirect from="/genre/:id" to="/genre" />
       </Switch>
       {isModal && (
-        <Route exact path="/genre/:id">
-          <ArtistList></ArtistList>
-        </Route>
+        <PrivateRoute exact path="/genre/:id" component={ArtistList} />
       )}
     </Layout>
   );
