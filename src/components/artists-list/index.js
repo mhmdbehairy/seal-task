@@ -1,38 +1,58 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useHistory } from 'react-router-dom';
+import { Modal, Button } from 'antd';
 import styled from '@emotion/styled/macro';
 
-import { success, error, selectArtists } from './artistSlice';
-
-import { useParams, Route } from 'react-router-dom';
+import { success, selectArtists } from './artistsSlice';
 
 const { DZ } = window;
 
-const GenreContainer = styled.div``;
+const ArtistsContainer = styled.div`
+  .ant-modal .ant-modal-content {
+    background-color: red;
+    height: 500px;
+  }
+`;
 
 const ArtistList = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const artistList = useSelector(selectArtists);
+  const history = useHistory();
+  const artistsList = useSelector(selectArtists);
 
   useEffect(() => {
-    window.DZ.api(`/genre/${id}/artists`, response => {
+    DZ.api(`/genre/${id}/artists`, response => {
       dispatch(success(response.data));
     });
   }, []);
 
-  console.log(artistList);
+  const handleHide = () => {
+    history.goBack();
+  };
 
   return (
-    <GenreContainer>
-      <ul>
-        {artistList &&
-          artistList.map(artist => {
-            return <li key={artist.id}>{artist.name}</li>;
-          })}
-      </ul>
-    </GenreContainer>
+    <ArtistsContainer>
+      <Modal
+        visible={true}
+        title="Artists"
+        bodyStyle={{ height: '500px', overflowY: 'scroll' }}
+        onCancel={handleHide}
+        footer={[
+          <Button primary="true" key="back" onClick={handleHide}>
+            Return
+          </Button>
+        ]}
+      >
+        <ul>
+          {artistsList &&
+            artistsList.map(artist => {
+              return <li key={artist.id}>{artist.name}</li>;
+            })}
+        </ul>
+      </Modal>
+    </ArtistsContainer>
   );
 };
 

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 import styled from '@emotion/styled/macro';
 import GenreCard from './genreCard';
 
