@@ -1,29 +1,25 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 
 import styled from '@emotion/styled/macro';
-import { Button, Card } from 'antd';
 
-import { logIn } from 'components';
+import { Login } from 'components';
 
-const HeaderContainer = styled.header`
-  background-color: #3c3c3c;
-  padding: 15px 48px;
-
-  svg {
-    max-width: 100%;
-    height: auto;
-  }
+const Container = styled.section`
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(${require('components/images/club.jpg')});
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 15% 0;
 `;
 
-const LoginContainer = () => {
-  const dispatch = useDispatch();
-
+const LoginPage = () => {
   return (
-    <Card title="Welcome to My Application" bordered="true">
-      <Button onClick={e => logIn(dispatch)}>Log In</Button>
-    </Card>
+    <Container>
+      <Login />
+    </Container>
   );
 };
 
-export default LoginContainer;
+export default LoginPage;

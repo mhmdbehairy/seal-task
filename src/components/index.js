@@ -1,2 +1,2 @@
 export { default as Layout } from './layout';
-export * from './auth';
+export { default as Login } from './auth';
