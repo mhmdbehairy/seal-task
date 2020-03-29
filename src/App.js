@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Redirect, Switch, useHistory } from 'react-router-dom';
 
 import { Layout } from 'components';
 import { LoginPage } from 'pages';
@@ -36,6 +36,7 @@ const App = () => {
         <Route exact path="/genre">
           <GenresContainer />
         </Route>
+        <Redirect from="/genre/:id" to="/genre" />
       </Switch>
       {isModal && (
         <Route exact path="/genre/:id">
