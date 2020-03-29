@@ -1,11 +1,17 @@
 import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import styled from '@emotion/styled/macro';
 import { Button, Card } from 'antd';
 
-import { success, loggingIn, selectLoading } from 'components/auth/authSlice';
+import {
+  success,
+  loggingIn,
+  error,
+  selectLoading,
+  selectLoginStatus
+} from 'components/auth/authSlice';
 import { notify } from 'utilities';
 
 const { DZ } = window;
@@ -38,17 +44,27 @@ const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
+  const loginStatus = useSelector(selectLoginStatus);
+
+  if (loginStatus) {
+    return <Redirect from="/" to="/genre" />;
+  }
 
   const login = () => {
     dispatch(loggingIn());
     DZ.login(
       response => {
-        if (response.authResponse) {
+        if (response.authResponse.accessToken) {
           DZ.api('/user/me', user => {
             dispatch(success(user));
+            localStorage.setItem('token', response.authResponse.accessToken);
+            localStorage.setItem('userData', user);
             history.push('/genre');
             notify('success', 'Logged in Successfully!');
           });
+        } else {
+          dispatch(error());
+          notify('error', 'Login Unsuccessful. Please, Try Again!');
         }
       },
       { perms: 'basic_access' }
