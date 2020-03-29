@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import { Layout } from 'components';
 import { LoginPage } from 'pages';
-import { GenresContainer } from 'pages';
+import { GenresContainer, Artists } from 'pages';
 import { initDZ } from 'utilities';
 
 import 'antd/dist/antd.css';
@@ -20,6 +20,9 @@ const App = () => {
         </Route>
         <Route exact path="/genre">
           <GenresContainer />
+        </Route>
+        <Route exact path="/genre/:id">
+          <Artists></Artists>
         </Route>
       </Switch>
     </Layout>

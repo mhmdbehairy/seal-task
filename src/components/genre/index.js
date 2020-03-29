@@ -28,8 +28,6 @@ const GenreGrid = () => {
     });
   }, []);
 
-  console.log(genreList);
-
   return (
     <GenreContainer>
       {genreList &&
@@ -39,6 +37,7 @@ const GenreGrid = () => {
               key={genre.id}
               name={genre.name}
               image={genre.picture}
+              id={genre.id}
             ></GenreCard>
           );
         })}
