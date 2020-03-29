@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled/macro';
+import { Spin } from 'antd';
 
 import GenreCard from './genreCard';
 
@@ -14,6 +15,7 @@ const GenreContainer = styled.div`
   margin: 0 auto;
   padding: 5% 0;
   height: 100%;
+
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   grid-gap: 25px;
@@ -31,19 +33,21 @@ const GenreGrid = () => {
   }, []);
 
   return (
-    <GenreContainer>
-      {genresList &&
-        genresList.map(genre => {
-          return (
-            <GenreCard
-              key={genre.id}
-              name={genre.name}
-              image={genre.picture_medium}
-              id={genre.id}
-            ></GenreCard>
-          );
-        })}
-    </GenreContainer>
+    <Spin spinning={genresList.length === 0}>
+      <GenreContainer>
+        {genresList &&
+          genresList.map(genre => {
+            return (
+              <GenreCard
+                key={genre.id}
+                name={genre.name}
+                image={genre.picture_medium}
+                id={genre.id}
+              ></GenreCard>
+            );
+          })}
+      </GenreContainer>
+    </Spin>
   );
 };
 

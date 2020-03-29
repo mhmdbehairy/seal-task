@@ -4,7 +4,7 @@ import { Route, Redirect, Switch, useHistory } from 'react-router-dom';
 
 import { Layout } from 'components';
 import { LoginPage } from 'pages';
-import { GenresContainer, Artists } from 'pages';
+import { GenresContainer } from 'pages';
 import { ArtistList } from 'components';
 import { initDZ } from 'utilities';
 
@@ -40,7 +40,7 @@ const App = () => {
       </Switch>
       {isModal && (
         <Route exact path="/genre/:id">
-          <Artists></Artists>
+          <ArtistList></ArtistList>
         </Route>
       )}
     </Layout>
