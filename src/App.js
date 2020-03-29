@@ -3,14 +3,23 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import { Layout } from 'components';
-import { LoginContainer } from 'pages';
+import { LoginPage } from 'pages';
+import { GenresContainer } from 'pages';
+import { initDZ } from 'utilities';
+
+import 'antd/dist/antd.css';
+
+initDZ();
 
 const App = () => {
   return (
     <Layout>
       <Switch>
         <Route exact path="/">
-          <LoginContainer />
+          <LoginPage />
+        </Route>
+        <Route exact path="/genre">
+          <GenresContainer />
         </Route>
       </Switch>
     </Layout>

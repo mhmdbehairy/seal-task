@@ -1,24 +1,62 @@
+import React from 'react';
+
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import styled from '@emotion/styled/macro';
+import { Button, Card } from 'antd';
+
 import { success, error } from 'components/auth/authSlice';
 
 const { DZ } = window;
 
-DZ.init({
-  appId: '392944',
-  secret: 'bdf0147e1fbda79d41721573c8d352c4',
-  channelUrl: process.env.REACT_APP_CHANNEL_URL
-});
+const LoginContainer = styled.section`
+  .ant-card-bordered {
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 20px;
+  }
 
-export const logIn = dispatch => {
-  DZ.login(
-    response => {
-      if (response.authResponse.accessToken) {
-        DZ.api('/user/me', user => {
-          dispatch(success(user));
-        });
-      } else {
-        dispatch(error());
-      }
-    },
-    { perms: 'basic_access' }
+  .ant-card-body {
+    line-height: 60px;
+  }
+`;
+
+const Login = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const login = () => {
+    DZ.login(
+      response => {
+        if (response.authResponse) {
+          DZ.api('/user/me', user => {
+            dispatch(success(user));
+            history.push('/genre');
+          });
+        } else {
+          dispatch(error());
+        }
+      },
+      { perms: 'basic_access, offline_access' }
+    );
+  };
+
+  return (
+    <LoginContainer>
+      <Card title="Welcome to Deezer">
+        <p>Login to Proceed</p>
+        <Button
+          primary="true"
+          size="large"
+          style={{ width: 300 }}
+          onClick={login}
+        >
+          Log in
+        </Button>
+      </Card>
+    </LoginContainer>
   );
 };
+
+export default Login;

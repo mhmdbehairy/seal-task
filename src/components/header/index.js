@@ -8,6 +8,8 @@ import { DeezerLogo } from 'components/svgs';
 const HeaderContainer = styled.header`
   background-color: #3c3c3c;
   padding: 15px 48px;
+  z-index: 10;
+  position: relative;
 
   svg {
     max-width: 100%;
