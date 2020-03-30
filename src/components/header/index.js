@@ -1,15 +1,14 @@
 import React from 'react';
 
 import styled from '@emotion/styled/macro';
-import { Link } from 'react-router-dom';
 
 import { DeezerLogo } from 'components/svgs';
-import { Button } from 'antd';
-import { useDispatch } from 'react-redux';
+import { Button, Avatar } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 import { notify } from 'utilities';
 import { useHistory } from 'react-router-dom';
 
-import { logout } from 'components/auth/authSlice';
+import { logout, selectUser } from 'components/auth/authSlice';
 
 const HeaderContainer = styled.header`
   background-color: #3c3c3c;
@@ -31,6 +30,7 @@ const HeaderContainer = styled.header`
     font-size: 20px;
     border: 0;
     height: 50px;
+    padding: 0;
 
     :focus {
       background-color: transparent;
@@ -47,21 +47,43 @@ const LogoWrapper = styled.div`
   flex: 1 1 0;
 `;
 
-const ButtonWrapper = styled.div`
+const SubHeader = styled.div`
+  display: flex;
   line-height: 55px;
+  align-items: center;
+
+  p {
+    margin: 0 150px 0 0;
+    font-size: 20px;
+    color: #fff;
+  }
 `;
 
+const AvatarWrapper = styled.div``;
+
 const Header = () => {
+  const user = useSelector(selectUser);
+
   const dispatch = useDispatch();
   const history = useHistory();
   return (
     <HeaderContainer>
       <LogoWrapper>
-        <Link to="/">
-          <DeezerLogo color={'#fff'} />
-        </Link>
+        <DeezerLogo color={'#fff'} />
       </LogoWrapper>
-      <ButtonWrapper>
+      <SubHeader>
+        <AvatarWrapper>
+          <Avatar
+            size="small"
+            style={{
+              backgroundColor: 'green',
+              width: '10px',
+              height: '10px',
+              marginRight: '7px'
+            }}
+          />
+        </AvatarWrapper>
+        <p>{user}</p>
         <Button
           onClick={() => {
             window.DZ.logout();
@@ -74,7 +96,7 @@ const Header = () => {
         >
           Log Out
         </Button>
-      </ButtonWrapper>
+      </SubHeader>
     </HeaderContainer>
   );
 };
