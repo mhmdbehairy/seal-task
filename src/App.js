@@ -18,6 +18,8 @@ const App = () => {
 
   const [prevLocation, setPrevLocation] = useState(location);
 
+  console.log(localStorage.getItem('username'));
+
   useEffect(() => {
     if (!(location.state && location.state.modal)) {
       setPrevLocation(location);

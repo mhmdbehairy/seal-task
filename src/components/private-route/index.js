@@ -4,14 +4,14 @@ import { useSelector } from 'react-redux';
 import { selectUser, selectLoginStatus } from 'components/auth/authSlice';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const user = useSelector(selectUser);
   const loginStatus = useSelector(selectLoginStatus);
+  const user = useSelector(selectUser);
 
   return (
     <Route
       {...rest}
       render={props =>
-        user && loginStatus ? (
+        loginStatus ? (
           <Component {...props} />
         ) : (
           <Redirect

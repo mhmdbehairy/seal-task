@@ -56,9 +56,9 @@ const Login = () => {
       response => {
         if (response.authResponse.accessToken) {
           DZ.api('/user/me', user => {
-            dispatch(success(user));
+            dispatch(success(user.name));
             localStorage.setItem('token', response.authResponse.accessToken);
-            localStorage.setItem('userData', user);
+            localStorage.setItem('username', user.name);
             history.push('/genre');
             notify('success', 'Logged in Successfully!');
           });

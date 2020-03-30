@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const slice = createSlice({
   name: 'authentication',
   initialState: {
-    user: localStorage.getItem('userData') || null,
+    user: localStorage.getItem('username') || null,
     loginStatus:
       localStorage.getItem('token') && localStorage.getItem('token') !== null
         ? true
