@@ -23,11 +23,16 @@ export const slice = createSlice({
     error: state => {
       state.loading = false;
       state.error = true;
+    },
+    logout: state => {
+      state.loading = false;
+      state.user = null;
+      state.loginStatus = false;
     }
   }
 });
 
-export const { success, loggingIn, error } = slice.actions;
+export const { success, loggingIn, error, logout } = slice.actions;
 
 export const selectUser = state => state.authentication.user;
 export const selectLoading = state => state.authentication.loading;
