@@ -28,7 +28,10 @@ const ArtistList = () => {
   }, []);
 
   const handleHide = () => {
-    history.goBack();
+    history.push({
+      pathname: `/genre`,
+      state: { modal: false }
+    });
     dispatch(clear());
   };
 
