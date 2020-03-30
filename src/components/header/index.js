@@ -66,6 +66,16 @@ const Header = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const logOut = () => {
+    window.DZ.logout();
+    dispatch(logout());
+    localStorage.removeItem('token');
+    localStorage.removeItem('userData');
+    history.push('/');
+    notify('success', 'Logged out Successfully!');
+  };
+
   return (
     <HeaderContainer>
       <LogoWrapper>
@@ -84,18 +94,7 @@ const Header = () => {
           />
         </AvatarWrapper>
         <p>{user}</p>
-        <Button
-          onClick={() => {
-            window.DZ.logout();
-            dispatch(logout());
-            localStorage.removeItem('token');
-            localStorage.removeItem('userData');
-            history.push('/');
-            notify('success', 'Logged out Successfully!');
-          }}
-        >
-          Log Out
-        </Button>
+        <Button onClick={logOut}>Log Out</Button>
       </SubHeader>
     </HeaderContainer>
   );
