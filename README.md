@@ -8,7 +8,7 @@ This project uses the Deezer API to view a list of all genres. The user can clic
 * Ant Design Framework
 * Enzyme and Jest for Unit Tests
 
-The project relies heavily on using the react hooks including the new redux hooks and the new router hooks as hooks are known to have a significant better performance.
+The project relies heavily on using the react hooks including the new redux hooks and the router hooks as they have a significant better performance.
 
 ## Available Scripts
 
