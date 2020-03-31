@@ -1,10 +1,12 @@
 import React from 'react';
+
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { mount, shallow } from 'utilities';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+
+import { mount } from 'utilities';
 import Header from './index';
-import { BrowserRouter } from 'react-router-dom';
 
 const mockStore = configureMockStore([thunk]);
 

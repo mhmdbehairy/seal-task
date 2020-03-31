@@ -43,7 +43,7 @@ const ArtistList = () => {
       })()}
       bodyStyle={{
         height: '400px',
-        overflowY: artistsList.length === 0 ? 'none' : 'scroll'
+        overflowY: artistsList && artistsList.length === 0 ? 'none' : 'scroll'
       }}
       onCancel={handleHide}
       footer={[
@@ -63,7 +63,7 @@ const ArtistList = () => {
         </Button>
       ]}
     >
-      <Spin spinning={artistsList.length === 0}>
+      <Spin spinning={artistsList && artistsList.length === 0}>
         <List
           itemLayout="horizontal"
           dataSource={artistsList}

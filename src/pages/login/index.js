@@ -1,10 +1,9 @@
 import React from 'react';
 
-import styled from '@emotion/styled/macro';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
-import { Login } from 'components';
+import styled from '@emotion/styled/macro';
+
 import {
   success,
   loggingIn,
@@ -13,6 +12,7 @@ import {
   selectLoginStatus
 } from 'components/auth/authSlice';
 import { notify } from 'utilities';
+import { Login } from 'components';
 
 const { DZ } = window;
 

@@ -9,7 +9,7 @@ const MetaWrapper = styled.div`
   text-align: center;
 `;
 
-const GenreCard = ({ name, image, id, onClick }) => {
+const GenreCard = ({ name, image, onClick }) => {
   return (
     <Card
       hoverable

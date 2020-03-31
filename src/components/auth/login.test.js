@@ -1,10 +1,8 @@
 import React from 'react';
-import { mount, shallow } from 'utilities';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import Login from './index';
 
-const mockStore = configureMockStore([thunk]);
+import { mount } from 'utilities';
+
+import Login from './index';
 
 describe('Header Component', () => {
   let component;
