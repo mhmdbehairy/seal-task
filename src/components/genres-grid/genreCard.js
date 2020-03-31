@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { useHistory } from 'react-router-dom';
 import styled from '@emotion/styled/macro';
 import { Card } from 'antd';
 
@@ -10,19 +9,13 @@ const MetaWrapper = styled.div`
   text-align: center;
 `;
 
-const GenreCard = ({ name, image, id }) => {
-  const history = useHistory();
+const GenreCard = ({ name, image, id, onClick }) => {
   return (
     <Card
       hoverable
       style={{ width: '240px' }}
       cover={<img alt={name} src={image} />}
-      onClick={() => {
-        history.push({
-          pathname: `/genre/${id}`,
-          state: { modal: true }
-        });
-      }}
+      onClick={onClick}
     >
       <MetaWrapper>
         <Meta

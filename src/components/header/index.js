@@ -61,20 +61,8 @@ const SubHeader = styled.div`
 
 const AvatarWrapper = styled.div``;
 
-const Header = () => {
+const Header = ({ onClick }) => {
   const user = useSelector(selectUser);
-
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  const logOut = () => {
-    window.DZ.logout();
-    dispatch(logout());
-    localStorage.removeItem('token');
-    localStorage.removeItem('userData');
-    history.push('/');
-    notify('success', 'Logged out Successfully!');
-  };
 
   return (
     <HeaderContainer>
@@ -94,7 +82,7 @@ const Header = () => {
           />
         </AvatarWrapper>
         <p>{user}</p>
-        <Button onClick={logOut}>Log Out</Button>
+        <Button onClick={onClick}>Log Out</Button>
       </SubHeader>
     </HeaderContainer>
   );
