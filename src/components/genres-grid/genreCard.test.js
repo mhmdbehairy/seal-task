@@ -1,12 +1,9 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { mount, shallow } from 'utilities';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import GenreCard from './genreCard';
-import { BrowserRouter } from 'react-router-dom';
 
-const mockStore = configureMockStore([thunk]);
+import { BrowserRouter } from 'react-router-dom';
+import { mount } from 'utilities';
+
+import GenreCard from './genreCard';
 
 describe('Genre Card Component', () => {
   let component;

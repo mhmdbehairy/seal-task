@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-import styled from '@emotion/styled/macro';
 import { Spin } from 'antd';
 import { useHistory } from 'react-router-dom';
-
-import GenreCard from './genreCard';
+import { useDispatch, useSelector } from 'react-redux';
+import styled from '@emotion/styled/macro';
 
 import { success, selectGenres } from 'components/genres-grid/genreSlice';
+import GenreCard from './genreCard';
 
 const { DZ } = window;
 
@@ -42,7 +41,7 @@ const GenreGrid = () => {
   }, []);
 
   return (
-    <Spin spinning={genresList.length === 0}>
+    <Spin spinning={genresList && genresList.length === 0}>
       <GenreContainer>
         {genresList &&
           genresList.map(genre => {

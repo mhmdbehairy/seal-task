@@ -1,13 +1,11 @@
 import React from 'react';
 
-import Header from 'components/header';
-import { GenreGrid } from 'components';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { notify } from 'utilities';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { logout, selectUser } from 'components/auth/authSlice';
+import { logout } from 'components/auth/authSlice';
+import { notify } from 'utilities';
+import { GenreGrid, Header } from 'components';
 
 const GenresContainer = () => {
   const dispatch = useDispatch();

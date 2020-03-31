@@ -1,14 +1,11 @@
 import React from 'react';
 
+import { Button, Avatar } from 'antd';
+import { useSelector } from 'react-redux';
 import styled from '@emotion/styled/macro';
 
+import { selectUser } from 'components/auth/authSlice';
 import { DeezerLogo } from 'components/svgs';
-import { Button, Avatar } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { notify } from 'utilities';
-import { useHistory } from 'react-router-dom';
-
-import { logout, selectUser } from 'components/auth/authSlice';
 
 const HeaderContainer = styled.header`
   background-color: #3c3c3c;

@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
 import { Route, Redirect, Switch, useHistory } from 'react-router-dom';
+import 'antd/dist/antd.css';
 
-import { Layout } from 'components';
-import { LoginPage } from 'pages';
-import { GenresContainer } from 'pages';
+import { LoginPage, GenresContainer } from 'pages';
 import { ArtistList, PrivateRoute } from 'components';
 import { initDZ } from 'utilities';
 
-import 'antd/dist/antd.css';
-
+// Inject DZ object in the window object
 initDZ();
 
 const App = () => {
   const history = useHistory();
   const location = history.location;
-
   const [prevLocation, setPrevLocation] = useState(location);
-
-  console.log(localStorage.getItem('username'));
+  const isModal =
+    location.state && location.state.modal && prevLocation !== location;
 
   useEffect(() => {
     if (!(location.state && location.state.modal)) {
@@ -26,11 +23,8 @@ const App = () => {
     }
   }, [location]);
 
-  const isModal =
-    location.state && location.state.modal && prevLocation !== location;
-
   return (
-    <Layout>
+    <>
       <Switch location={isModal ? prevLocation : location}>
         <Route exact path="/" component={LoginPage} />
         <PrivateRoute exact path="/genre" component={GenresContainer} />
@@ -39,7 +33,7 @@ const App = () => {
       {isModal && (
         <PrivateRoute exact path="/genre/:id" component={ArtistList} />
       )}
-    </Layout>
+    </>
   );
 };
 
