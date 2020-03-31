@@ -22,7 +22,7 @@ const ArtistList = () => {
   const artistsList = useSelector(selectArtists);
 
   useEffect(() => {
-    DZ.api(`/genre/${id}/artists`, response => {
+    window.DZ.api(`/genre/${id}/artists`, response => {
       dispatch(success(response.data));
     });
   }, []);
