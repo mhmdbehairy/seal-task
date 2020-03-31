@@ -3,42 +3,30 @@ import { Provider } from 'react-redux';
 import { mount, shallow } from 'utilities';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import Header from './index';
+import GenreCard from './genreCard';
 import { BrowserRouter } from 'react-router-dom';
 
 const mockStore = configureMockStore([thunk]);
 
-describe('Header Component', () => {
-  let store;
+describe('Genre Card Component', () => {
   let component;
   const mockfn = jest.fn();
 
   beforeEach(() => {
-    store = mockStore({
-      authentication: { user: null }
-    });
-
     component = mount(
       <BrowserRouter>
-        <Provider store={store}>
-          <Header onClick={mockfn} />
-        </Provider>
+        <GenreCard onClick={mockfn} />
       </BrowserRouter>
     );
   });
 
-  it('should render a button', () => {
-    const wrapper = component.find('Button');
+  it('should render a Card', () => {
+    const wrapper = component.find('Card');
     expect(wrapper.length).toBe(1);
   });
 
-  it('should render a logo', () => {
-    const logo = component.find('Logo');
-    expect(logo.length).toBe(1);
-  });
-
-  it('should call the mock method with button click', () => {
-    const wrapper = component.find('Button');
+  it('should call the mock method with Card click', () => {
+    const wrapper = component.find('Card');
     wrapper.simulate('click');
     expect(mockfn).toHaveBeenCalled();
   });

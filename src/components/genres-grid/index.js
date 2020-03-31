@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from '@emotion/styled/macro';
 import { Spin } from 'antd';
+import { useHistory } from 'react-router-dom';
 
 import GenreCard from './genreCard';
 
@@ -25,6 +26,14 @@ const GenreContainer = styled.div`
 const GenreGrid = () => {
   const dispatch = useDispatch();
   const genresList = useSelector(selectGenres);
+  const history = useHistory();
+
+  const viewArtists = id => {
+    history.push({
+      pathname: `/genre/${id}`,
+      state: { modal: true }
+    });
+  };
 
   useEffect(() => {
     DZ.api('/genre', response => {
@@ -43,6 +52,9 @@ const GenreGrid = () => {
                 name={genre.name}
                 image={genre.picture_medium}
                 id={genre.id}
+                onClick={() => {
+                  viewArtists(genre.id);
+                }}
               ></GenreCard>
             );
           })}
